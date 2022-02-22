@@ -21,12 +21,20 @@ function createTrivias(data) {
 
 
 function displayTrivia(triviaArray){
-    const list = document.getElementById('trivia-list');
+   
+    //const list = document.getElementById('trivia-list');
+    // let divContainer= document.getElementById("div-container")
+    let divContainer = document.createElement('div');
+    divContainer.setAttribute('id','container');
 
     for (const trivia of triviaArray) {
         let liElement = createTriviaListElement(trivia)
-        list.appendChild(liElement);
+        
+        divContainer.appendChild(liElement)
+        
     }
+    const body = document.getElementsByTagName("body")[0];
+    body.appendChild(divContainer);
 
 
     // const title = document.getElementsByClassName('main-title')[0];
@@ -38,12 +46,16 @@ function displayTrivia(triviaArray){
     // const title2 = document.querySelector('.main-title');
 
     // const li = document.querySelector('li');
-    
+   
 }
 
 
 function createTriviaListElement(trivia){
-    let liElement = document.createElement('li');
+
+    let divTrivia = document.createElement('div');
+    divTrivia.setAttribute('id','trivia');
+
+    //let liElement = document.createElement('li');
     let span = document.createElement('span');
 
     span.className += "question-text ";
@@ -52,76 +64,88 @@ function createTriviaListElement(trivia){
     let textNode = document.createTextNode(trivia.question);
 
     span.appendChild(textNode);
-    liElement.appendChild(span)
+    divTrivia.appendChild(span)
 
-    let answersList = createAnswersList(trivia.getAllAnswers())
+    let answersList = createAnswersList(trivia.getAllAnswers(),divTrivia)
+    
 
-    liElement.appendChild(answersList);
-
-    return liElement;
+    return answersList;
 }
 
-function createAnswersList(answers){
-    let answerList = document.createElement('ul');
-
+function createAnswersList(answers,div){
+    //let answerList = document.createElement('ul');
+   
     for (const answ of answers) {
-        let liElement = createAnswerListElement(answ)
-        answerList.appendChild(liElement);
+        let buttonAnswer=document.createElement("button");
+        //buttonAnswer.innerHTML = answ;
+        // let textNodeAnsw = document.createTextNode(answ);
+        buttonAnswer.innerHTML = answ;
+        div.appendChild(buttonAnswer);
+        // buttonAnswer.appendChild(textNodeAnsw);
+        // div.appendChild(buttonAnswer);
+        
+
+        // let liElement = createAnswerListElement(answ)
+        // answerList.appendChild(liElement);
     }
 
-    return answerList;
+
+  return div ;
+   
 }
 
-function createAnswerListElement(answ){
-    let liElement = document.createElement('li');
-    let span = document.createElement('span');
-    let textNode = document.createTextNode(answ);
+// function createAnswerListElement(answ){
+//     let liElement = document.createElement('li');
+//     let span = document.createElement('span');
+//     let textNode = document.createTextNode(answ);
 
-    span.appendChild(textNode);
-    liElement.appendChild(span)
+//     span.appendChild(textNode);
+//     liElement.appendChild(span)
 
-    return liElement;
-}
+//     return liElement;
+// }
 
-function displayTrivia2(triviaArray){
+
+
+// function displayTrivia2(triviaArray){
     
-    const li0 = document.getElementById('li-0')
-    let textNode0 = document.createTextNode(triviaArray[0].question);
-    li0.appendChild(textNode0);
+//     const li0 = document.getElementById('li-0')
+//     let textNode0 = document.createTextNode(triviaArray[0].question);
+//     li0.appendChild(textNode0);
     
-    const li1 = document.getElementById('li-1')
-    let textNode1 = document.createTextNode(triviaArray[1].question);
-    li1.appendChild(textNode1);
+//     const li1 = document.getElementById('li-1')
+//     let textNode1 = document.createTextNode(triviaArray[1].question);
+//     li1.appendChild(textNode1);
 
-    const li2 = document.getElementById('li-2')
-    let textNode2 = document.createTextNode(triviaArray[2].question);
-    li2.appendChild(textNode2);
+//     const li2 = document.getElementById('li-2')
+//     let textNode2 = document.createTextNode(triviaArray[2].question);
+//     li2.appendChild(textNode2);
 
-    const li3 = document.getElementById('li-3')
-    let textNode3 = document.createTextNode(triviaArray[3].question);
-    li3.appendChild(textNode3);
+//     const li3 = document.getElementById('li-3')
+//     let textNode3 = document.createTextNode(triviaArray[3].question);
+//     li3.appendChild(textNode3);
 
-    const li4 = document.getElementById('li-4')
-    let textNode4 = document.createTextNode(triviaArray[4].question);
-    li4.appendChild(textNode4);
-
-    
-}
-
-
-function displayTrivia3(triviaArray){
-    
-    const triviaListElementArray = document.getElementsByClassName('trivia-li');
-    
-    for (let i = 0; i < triviaListElementArray.length; i++) {
-        const liElement = triviaListElementArray[i];
-        const trivia = triviaArray[i]
-        let textNode = document.createTextNode(trivia.question);
-        liElement.appendChild(textNode);
-    }
+//     const li4 = document.getElementById('li-4')
+//     let textNode4 = document.createTextNode(triviaArray[4].question);
+//     li4.appendChild(textNode4);
 
     
-}
+// }
+
+
+// function displayTrivia3(triviaArray){
+    
+//     const triviaListElementArray = document.getElementsByClassName('trivia-li');
+    
+//     for (let i = 0; i < triviaListElementArray.length; i++) {
+//         const liElement = triviaListElementArray[i];
+//         const trivia = triviaArray[i]
+//         let textNode = document.createTextNode(trivia.question);
+//         liElement.appendChild(textNode);
+//     }
+
+    
+// }
 
 
 
